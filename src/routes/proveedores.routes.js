@@ -29,10 +29,9 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-    proveedores
-        .findByIdAndUpdate(req.params.id, req.body)
-        .status(204)
-        .then((data) => res.send(data));
+    proveedores.findByIdAndUpdate(req.params.id, req.body).then(() => {
+        res.sendStatus(204);
+    });
 });
 
 router.delete("/:id", (req, res) => {
