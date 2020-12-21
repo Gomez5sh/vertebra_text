@@ -1,26 +1,44 @@
 const express = require("express");
 const router = express.Router();
 
+const tienda = require("../models/tiendas");
+
 // Headers
 
 router.get("/", (req, res) => {
-    res.send("GET");
+    tienda
+        .find()
+        .exec()
+        .then((data) => res.send(data))
+        .status(200);
 });
 
 router.get("/:id", (req, res) => {
-    res.send(req.params.id);
+    tienda
+        .findById(req.params.id)
+        .exec()
+        .then((data) => res.send(data))
+        .status(200);
 });
 
 router.post("/", (req, res) => {
-    res.send("POST");
+    tienda
+        .create(req.body)
+        .then((data) => res.send(data))
+        .status(201);
 });
 
 router.put("/:id", (req, res) => {
-    res.send("put");
+    tienda
+        .findByIdAndUpdate(req.body.id, req.body)
+        .status(204)
+        .then((data) => res.send(data));
 });
 
 router.delete("/:id", (req, res) => {
-    res.send("delete");
+    tienda
+        .findOneAndDelete(req.params.id)
+        .exec()
+        .then((data) => res.send(204));
 });
-
 module.exports = router;

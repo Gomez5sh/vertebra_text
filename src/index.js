@@ -4,6 +4,11 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const path = require("path");
+const bodyParser = require("body-parser");
+
+// Body Parser
+
+app.use(bodyParser.json);
 
 // Routes
 

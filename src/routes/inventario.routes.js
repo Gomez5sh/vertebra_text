@@ -1,26 +1,45 @@
 const express = require("express");
 const router = express.Router();
 
+const inventario = require("../models/inventario");
+
 // Headers
 
 router.get("/", (req, res) => {
-    res.send("GET");
+    inventario
+        .find()
+        .exec()
+        .then((data) => res.send(data))
+        .status(200);
 });
 
 router.get("/:id", (req, res) => {
-    res.send(req.params.id);
+    inventario
+        .findById(req.params.id)
+        .exec()
+        .then((data) => res.send(data))
+        .status(200);
 });
 
 router.post("/", (req, res) => {
-    res.send("POST");
+    inventario
+        .create(req.body)
+        .then((data) => res.send(data))
+        .status(201);
 });
 
 router.put("/:id", (req, res) => {
-    res.send("put");
+    inventario
+        .findByIdAndUpdate(req.body.id, req.body)
+        .status(204)
+        .then((data) => res.send(data));
 });
 
 router.delete("/:id", (req, res) => {
-    res.send("delete");
+    inventario
+        .findOneAndDelete(req.params.id)
+        .exec()
+        .then((data) => res.send(204));
 });
 
 module.exports = router;
