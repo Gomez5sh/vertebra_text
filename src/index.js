@@ -5,6 +5,14 @@ const morgan = require("morgan");
 const app = express();
 const path = require("path");
 
+// Routes
+
+const producto = require("./routes/producto.routes");
+const inventario = require("./routes/inventario.routes");
+const proveedores = require("./routes/proveedores.routes");
+const tienda = require("./routes/tienda.routes");
+
+//Database
 const { mongoose } = require("./database");
 
 // Settings
@@ -18,9 +26,17 @@ app.set("port", process.env.PORT || 8080);
 app.use(morgan("dev"));
 app.use(express.json());
 
-// Routes
+// Use Routes
 
-app.use("/api/v1", require("./routes/task.routes"));
+/*app.get("/", (req, res) => {
+    console.log("Soy la Raiz");
+});
+*/
+
+app.use("/api/producto", producto);
+app.use("/api/inventario", inventario);
+app.use("/api/proveedores", proveedores);
+app.use("/api/tienda", tienda);
 
 // Satatic Files
 // Enviando react a ruta principal de app
