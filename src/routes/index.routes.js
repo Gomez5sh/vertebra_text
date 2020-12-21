@@ -1,18 +1,11 @@
-// Imports
-const express = require("express");
-const router = express.Router();
+var express = require("express");
+var router = express.Router();
 
-const producto = require("../models/productos");
-const inventario = require("../models/inventario");
-const proveedores = require("../models/proveedores");
-const tiendas = require("../models/tiendas");
-
-// Rutas de app
-
-router.get("/", async(req, res) => {
-    const Producto = await producto.find();
-    console.log(Producto);
-    res.json("Funca");
+/* GET home page. */
+router.get("/", function(req, res) {
+    res.status(200).json({
+        "Welcome API v1": "WORKS!",
+    });
 });
 
 module.exports = router;
