@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
     producto
-        .findByIdAndUpdate(req.body.id, req.body)
+        .findByIdAndUpdate(req.params.id, req.body)
         .status(204)
         .then((data) => res.send(data));
 });
