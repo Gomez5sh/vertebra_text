@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -11,21 +12,17 @@ export function Navbar() {
         <div className="collpase nav-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="navbar-item">
-              <Link activeClassName="active" to="/" className="nav-link">
+              <Link className="active nav-link" to="/">
                 Products
               </Link>
             </li>
             <li className="navbar-item">
-              <Link activeClassName="active" to="/stores" className="nav-link">
+              <Link className="active nav-link" to="/stores">
                 Stores
               </Link>
             </li>
             <li className="navbar-item">
-              <Link
-                activeClassName="active"
-                to="/suppliers"
-                className="nav-link"
-              >
+              <Link className="active nav-link" to="/suppliers">
                 Suppliers
               </Link>
             </li>
