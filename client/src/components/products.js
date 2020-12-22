@@ -8,36 +8,99 @@ class Products extends Component {
   state = {
     data: [],
     modalInsert: false,
+    deleteModal: false,
     form: {
       id: "",
       name: "",
-      Sku: "",
+      description: "",
+      sku: "",
       unit_measurement: "",
       unidad_quantity: "",
-      refrigerated: "",
-      suppliers_ID: "",
+      //refrigerated: Boolean,
+      //suppliers_ID: "",
+      modaltype: "",
     },
   };
 
+  // Petitions
+
   getPetition = () => {
-    axios.get(url).then((response) => {
-      // console.log(response.data)
-      this.setState({
-        data: response.data,
+    axios
+      .get(url)
+      .then((response) => {
+        // console.log(response.data)
+        this.setState({
+          data: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
-    });
   };
+
+  postPetition = async (product) => {
+    delete this.state.form.id;
+    await axios
+      .post(url, this.state.form)
+      .then((response) => {
+        this.modalInsert();
+        this.getPetition();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  putPetition = () => {
+    axios
+      .put(url + "/" + this.state.form.id, this.state.form)
+      .then((response) => {
+        this.modalInsert();
+        this.getPetition();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  deletePetition = () => {
+    axios
+      .delete(url + "/" + this.state.form.id)
+      .then((response) => {
+        this.setState({ deleteModal: false });
+        this.getList();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  // Others
 
   modalInsert = () => {
     this.setState({ modalInsert: !this.state.modalInsert });
   };
 
+  selecProduct = (product) => {
+    this.setState({
+      modaltype: "refresh",
+      form: {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        sku: product.sku,
+        unit_measurement: product.unit_measurement,
+        unidad_quantity: product.unidad_quantity,
+      },
+    });
+  };
+
   handleChange = async (e) => {
     e.persist();
-    await this.setState({
-      // Heredar atributos que el usuario escriba
-      ...this.state.form,
-      [e.target.name]: e.target.value,
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
     });
     console.log(this.state.form);
   };
@@ -47,6 +110,8 @@ class Products extends Component {
   }
 
   render() {
+    const { form } = this.state;
+
     return (
       <>
         <div>
@@ -63,12 +128,13 @@ class Products extends Component {
                       <th>Sku</th>
                       <th>Unit Measurement</th>
                       <th>Unidad Quantity</th>
-                      <th>Refrigerated</th>
-                      <th>Suppliers</th>
                       <th>
                         <button
                           className="btn btn-success"
-                          onClick={() => this.modalInsert()}
+                          onClick={() => {
+                            this.setState({ form: null, modaltype: "Insert" });
+                            this.modalInsert();
+                          }}
                         >
                           Create
                         </button>
@@ -84,11 +150,25 @@ class Products extends Component {
                           <td>{product.sku}</td>
                           <td>{product.unit_measurement}</td>
                           <td>{product.unidad_quantity}</td>
-                          <td>{product.refrigerated}</td>
-                          <td>{product.suppliers_ID}</td>
                           <td>
-                            <button className="btn btn-info">Edit</button>
-                            <button className="btn btn-danger">Delete</button>
+                            <button
+                              className="btn btn-info"
+                              onClick={() => {
+                                this.selecProduct(product);
+                                this.modalInsert();
+                              }}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="btn btn-danger"
+                              onClick={() => {
+                                this.selecProduct(product);
+                                this.setState({ deleteModal: true });
+                              }}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
                       );
@@ -115,19 +195,19 @@ class Products extends Component {
                         id="id"
                         readOnly
                         onChange={this.handleChange}
-                        //value={form ? form.id : this.state.data.length + 1}
+                        value={form ? form.id : this.state.data.length + 1}
                       />
                       <br />
                       <label htmlFor="name">Name</label>
                       <input
                         className="form-control"
                         type="text"
-                        name="nombre"
-                        id="nombre"
+                        name="name"
+                        id="name"
                         onChange={this.handleChange}
-                        //value={form ? form.nombre : ""}
+                        value={form ? form.name : ""}
                       />
-                      <br />
+
                       <label htmlFor="description">Description</label>
                       <input
                         className="form-control"
@@ -135,9 +215,9 @@ class Products extends Component {
                         name="description"
                         id="description"
                         onChange={this.handleChange}
-                        //value={form ? form.pais : ""}
+                        value={form ? form.description : ""}
                       />
-                      <br />
+
                       <label htmlFor="sku">Sku</label>
                       <input
                         className="form-control"
@@ -145,9 +225,8 @@ class Products extends Component {
                         name="sku"
                         id="sku"
                         onChange={this.handleChange}
-                        //value={form ? form.capital_bursatil : ""}
+                        value={form ? form.sku : ""}
                       />
-                      <br />
                       <label htmlFor="unit_measurement">Unit Measurement</label>
                       <input
                         className="form-control"
@@ -155,9 +234,8 @@ class Products extends Component {
                         name="unit_measurement"
                         id="unit_measurement"
                         onChange={this.handleChange}
-                        //value={form ? form.nombre : ""}
+                        value={form ? form.unit_measurement : ""}
                       />
-                      <br />
                       <label htmlFor="unidad_quantity">Unidad Quantity</label>
                       <input
                         className="form-control"
@@ -165,52 +243,54 @@ class Products extends Component {
                         name="unidad_quantity"
                         id="unidad_quantity"
                         onChange={this.handleChange}
-                        //value={form ? form.nombre : ""}
-                      />
-                      <br />
-                      <label htmlFor="refrigerated">Refrigerated</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="refrigerated"
-                        id="refrigerated"
-                        onChange={this.handleChange}
-                        //value={form ? form.nombre : ""}
-                      />
-                      <br />
-                      <label htmlFor="suppliers_ID">Suppliers</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="suppliers_ID"
-                        id="suppliers_ID"
-                        onChange={this.handleChange}
-                        //value={form ? form.nombre : ""}
+                        value={form ? form.unidad_quantity : ""}
                       />
                     </div>
                   </ModalBody>
 
                   <ModalFooter>
-                    {this.state.tipoModal === "insertar" ? (
+                    {this.state.modaltype === "Insert" ? (
                       <button
                         className="btn btn-success"
-                        onClick={() => this.peticionPost()}
+                        onClick={() => this.postPetition()}
                       >
-                        Insertar
+                        Insert
                       </button>
                     ) : (
                       <button
-                        className="btn btn-primary"
-                        onClick={() => this.peticionPut()}
+                        className="btn btn-primary  "
+                        onClick={() => this.putPetition()}
                       >
-                        Actualizar
+                        Refresh
                       </button>
                     )}
+
                     <button
                       className="btn btn-danger"
-                      onClick={() => this.modalInsertar()}
+                      onClick={() => this.modalInsert()}
                     >
-                      Cancelar
+                      Exit
+                    </button>
+                  </ModalFooter>
+                </Modal>
+
+                <Modal isOpen={this.state.deleteModal}>
+                  <ModalBody>
+                    Are you sure you want to eliminate the company{" "}
+                    {form && form.name}
+                  </ModalBody>
+                  <ModalFooter>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => this.deletePetition()}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      className="btn btn-secundary"
+                      onClick={() => this.setState({ deleteModal: false })}
+                    >
+                      No
                     </button>
                   </ModalFooter>
                 </Modal>
