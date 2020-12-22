@@ -46,7 +46,7 @@ And run the startup command to get the application started on your computer at p
 ![image1](https://i.ibb.co/mCrNQxQ/server-api.png)
 ![image1](https://i.ibb.co/L8ZyRwH/post-man.png)
 
-- **Emmanuel Gómes** - [Github](https://github.com/G5sh) / [Twitter](https://twitter.com/Gomez5sh)
+- **Emmanuel Gómes** - [Github](https://github.com/Gomez5sh) / [Twitter](https://twitter.com/Gomez5sh)
 
 ## License
 
