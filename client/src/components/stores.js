@@ -7,7 +7,7 @@ export function Stores() {
         <h1>CRUD App with Hooks</h1>
         <div className="flex-row">
           <div className="flex-large">
-            <h2>View users</h2>
+            <h2>View stores</h2>
           </div>
         </div>
       </div>
