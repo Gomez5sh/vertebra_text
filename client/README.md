@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Vertebra text
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Front-end
 
-## Available Scripts
+> \_ “Keep close to Nature’s heart… and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean.”
 
-In the project directory, you can run:
+In this directory you can find the Front-end of the project, where you will find the database, API and server.
 
-### `yarn start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You need to have node.js, git, mongoDB and yarn installed on your computer. If you don't have them, you can download them from the following websites:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[Node js](https://nodejs.org/en/download/) || [Yarn](https://classic.yarnpkg.com/es-ES/docs/install/#windows-stable) || [Git](https://git-scm.com/downloads) ||
 
-### `yarn test`
+Clone the repository on your machine:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> \$ https://github.com/Gomez5sh/vertebra_text.git
 
-### `yarn build`
+You need clone the server file, and follow the instructions:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> \$ https://github.com/Gomez5sh/vertebra_text/tree/main/server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install node dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> \$ sudo npm i || yarn
 
-### `yarn eject`
+And run the startup command to get the application started on your computer at port 8080:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> \$ npm start || yarn start
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- `React`
+- `Javascript`
+- `npm/packages`
+- `Git`
+- `Axios`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Screenshots
 
-## Learn More
+![image1](https://i.ibb.co/jk4VjWt/front.png)
+![image1](https://i.ibb.co/cLYzqwX/delete.png)
+![image1](https://i.ibb.co/Lztp2hn/get.png)
+![image1](https://i.ibb.co/8MS6LxS/json.png)
+![image1](https://i.ibb.co/Hh1Tfsv/put.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Emmanuel Gómes** - [Github](https://github.com/Gomez5sh) / [Twitter](https://twitter.com/Gomez5sh)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Public Domain. No copy write protection.
