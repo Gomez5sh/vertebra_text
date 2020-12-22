@@ -39,6 +39,7 @@ And run the startup command to get the application started on your computer at p
 - `Express`
 - `npm/packages`
 - `JSON`
+- `Git`
 
 ### Screenshots
 
