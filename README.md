@@ -29,7 +29,6 @@ You need clone the server and client files, and follow the instructions:
 
 - `React`
 - `Javascript`
-- `npm/packages`
 - `Git`
 - `Axios`
 - `Node.js`
